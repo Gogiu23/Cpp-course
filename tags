@@ -4,12 +4,18 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-main	Base_de_programacion/Evaluaciones/hello_world.cc	/^int main()$/;"	f
-main	Base_de_programacion/Evaluaciones/swap3.cc	/^int main()$/;"	f
-main	Base_de_programacion/Exercizes/Semana_1/IMC.cc	/^int main()$/;"	f
-main	Base_de_programacion/Exercizes/Semana_1/age.cc	/^int main()$/;"	f
-main	Base_de_programacion/Exercizes/Semana_1/calcul.cc	/^int main()$/;"	f
-main	Base_de_programacion/Exercizes/Semana_1/fondue.cc	/^int main()$/;"	f
-main	Base_de_programacion/Variables/Reading.cpp	/^int main()$/;"	f
-main	clase dia 1/cpp11_test.cpp	/^int main()$/;"	f
-main	clase dia 2/introduction.cpp	/^int main()$/;"	f
+main	Evaluaciones/Semana_1/hello_world.cc	/^int main()$/;"	f
+main	Evaluaciones/Semana_1/swap3.cc	/^int main()$/;"	f
+main	Evaluaciones/Semana_2/champis.cc	/^int main()$/;"	f
+main	Evaluaciones/Semana_2/location_velos.cc	/^int main()$/;"	f
+main	Exercizes/Semana_1/IMC.cc	/^int main()$/;"	f
+main	Exercizes/Semana_1/age.cc	/^int main()$/;"	f
+main	Exercizes/Semana_1/calcul.cc	/^int main()$/;"	f
+main	Exercizes/Semana_1/fondue.cc	/^int main()$/;"	f
+main	Exercizes/Semana_2/equation.cc	/^int main()$/;"	f
+main	Exercizes/Semana_2/formules.cc	/^int main()$/;"	f
+main	Exercizes/Semana_2/interval_2.cc	/^int main()$/;"	f
+main	Exercizes/Semana_2/intervalle.cc	/^int main()$/;"	f
+main	Semana_1/Base_de_programacion/Variables/Reading.cpp	/^int main()$/;"	f
+main	Semana_1/Base_de_programacion/clase dia 1/cpp11_test.cpp	/^int main()$/;"	f
+main	Semana_1/Base_de_programacion/clase dia 2/introduction.cpp	/^int main()$/;"	f
