@@ -2,16 +2,6 @@
 ## Primer exercizio
 
 ```javascript
-2. write your code between these two provided comments:
-/*****************************************************
-* Compléter le code à partir d’ici
-*****************************************************/
-/*******************************************
-* Ne rien modifier après cette ligne.
-*******************************************/
-
-3. save and test your program to be sure that it works properly; try for instance
-the values used in the example given below;
 
 1.2 Instructions
 The rental rates are as follows:
@@ -63,7 +53,7 @@ using namespace std;
 
 int main()
 {
-  cout << "Donnez l'heure de dÃ©but de la location (un entier) : ";
+  cout << "Donnez l'heure de début de la location (un entier) : ";
   int debut;
   cin >> debut;
 
@@ -72,23 +62,23 @@ int main()
   cin >> fin;
 
   /*****************************************************
-   * ComplÃ©ter le code Ã  partir d'ici
+   * Completer le code a partir d'ici
    *****************************************************/
 
-    cout << "Les heures doivent Ãªtre comprises entre 0 et 24 !" << endl;
-    cout << "Bizarre, vous n'avez pas louÃ© votre vÃ©lo bien longtemps !" << endl;
-    cout << "Bizarre, le dÃ©but de la location est aprÃ¨s la fin ..." << endl;
+	cout << "Les heures doivent être comprises entre 0 et 24 !" << endl;
+	cout << "Bizarre, vous n'avez pas loué votre vélo bien longtemps !" << endl;
+	cout << "Bizarre, le début de la location est après la fin ..." << endl;
 
-    cout << "Vous avez louÃ© votre vÃ©lo pendant" << endl;
+    cout << "Vous avez loué votre vélo pendant" << endl;
 
       cout << " heure(s) au tarif horaire de "
            << " franc(s)" << endl;
 
-    cout << "Le montant total Ã  payer est de "
+    cout << "Le montant total a payer est de "
          << " franc(s)." << endl;
 
   /*******************************************
-   * Ne rien modifier aprÃ¨s cette ligne.
+   * Ne rien modifier aprés cette ligne.
    *******************************************/
 
   return 0;
@@ -115,9 +105,10 @@ The 6 possible mushrooms are (French names are mandatory):
 • the "cèpe de Bordeaux";
 • the "coprin chevelu";
 • the "girolle";
-1But that does not mean that these three questions are the same each time!
-3
 • and the "pied bleu".
+
+But that does not mean that these three questions are the same each time!
+
 The "cèpe de Bordeaux" is the only one to have pores ("tubes" in French), the
 other mushrooms having gills ("lamelles" in French).
 Both "coprin chevelu" and "agaric jaunissant" grow in meadows ("dans les prés" in
@@ -155,19 +146,19 @@ that your program will "speak" French. Our grader is unable to deal with
 translations.
 ```
 ```cpp
-  cout << "Pensez Ã  un champignon : amanite tue-mouches, pied bleu, girolle," << endl
-       << "cÃ¨pe de Bordeaux, coprin chevelu ou agaric jaunissant." << endl << endl;
+  cout << "Pensez én un champignon : amanite tue-mouches, pied bleu, girolle," << endl
+       << "cape de Bordeaux, coprin chevelu ou agaric jaunissant." << endl << endl;
 
   cout << "Est-ce que votre champignon a des lamelles (1 : oui, 0 : non) ? ";
   cout << "Est-ce que votre champignon a un anneau (1 : oui, 0 : non) ? ";
   cout << "Est-ce que votre champignon a un chapeau convexe (1 : oui, 0 : non) ? ";
-  cout << "Est-ce que votre champignon vit en forÃªt (1 : oui, 0 : non) ? ";
+  cout << "Est-ce que votre champignon vit en forét (1 : oui, 0 : non) ? ";
 
   cout << "==> Le champignon auquel vous pensez est ";
 
   cout << "l'agaric jaunissant";
   cout << "l'amanite tue-mouches";
-  cout << "le cÃ¨pe de Bordeaux";
+  cout << "le cape de Bordeaux";
   cout << "le coprin chevelu";
   cout << "la girolle";
   cout << "le pied bleu";
