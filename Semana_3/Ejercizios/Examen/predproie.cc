@@ -52,10 +52,12 @@ int main()
 
 		lapins_p2 = lapins_p2 * rabbit_f;
 		renards_p2 = renards_p2 * (1.0 + fox_f - taux_mortalite);
-		if (lapins_p2 < 0 or renards_p2 < 0)
+		if (lapins_p2 < 0.00 or renards_p2 < 0.00)
 		{
-			lapins_p2 = 0.00;
-			renards_p2 = 0.00;
+			if (lapins_p2 < 0.00)
+				lapins_p2 = 0.00;
+			if (renards_p2 < 0.00)
+				renards_p2 = 0.00;
 		}
 		cout << "Aprés " << init << " mois, il y a " << lapins_p2 << " lapins et " \
 			<< renards_p2 << " renards" << endl;
@@ -64,7 +66,6 @@ int main()
 	// ===== PARTIE 3 =====
 	// Variation du taux d'attaque
 	cout << endl;
-	//	cout << "Zorros y conejos " << renards_i << " " << lapins_i << endl;
 
 	do {
 		cout << "taux d'attaque au départ en % (entre 0.5 et 6) ? ";
@@ -77,7 +78,7 @@ int main()
 		cout << "taux d'attaque à la fin  en % (entre " << taux_attaque;
 		cout << " et 6) ? ";
 		cin >> taux_attaque_final;
-	} while (taux_attaque_final > 6);
+	} while (taux_attaque_final < taux_attaque or taux_attaque_final > 6);
 
 	taux_attaque /= 100;
 	taux_attaque_final /= 100;
@@ -103,8 +104,10 @@ int main()
 			renards_p2 = renards_p2 * (1.0 + fox_f - taux_mortalite);
 			if (lapins_p2 < 0 or renards_p2 < 0)
 			{
-				lapins_p2 = 0.00;
-				renards_p2 = 0.00;
+				if (lapins_p2 < 0.00)
+					lapins_p2 = 0.00;
+				if (renards_p2 < 0.00)
+					renards_p2 = 0.00;
 			}
 			if (renards_p2 < 5.00 or lapins_p2 < 5.00)
 			{
