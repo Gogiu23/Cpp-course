@@ -25,26 +25,27 @@ void ajouter_chiffre_droit(int& nombre, int chiffre)
 
 void dire_chiffre(int& nombre, int repetitions_chiffre, int chiffre)
 {
-	while (repetitions_chiffre) {
-		ajouter_chiffre_droit(nombre, chiffre);
-		--repetitions_chiffre;
-	}
+	ajouter_chiffre_droit(nombre, repetitions_chiffre);
+	ajouter_chiffre_droit(nombre, chiffre);
 }
 
 int lire_et_dire(int nombre)
 {
-	int digit(0);
-	int repetitions(1);
+	int num_fin(0);
 
 	while (nombre)
 	{
-		digit = separer_chiffre_gauche(nombre);
-		int digit2 = separer_chiffre_gauche(nombre);
-		if (digit == digit2)
+		int repetitions = 1;
+		int digit = separer_chiffre_gauche(nombre);
+		int temp = nombre;
+		while (digit == separer_chiffre_gauche(temp))
+		{
 			++repetitions;
-		dire_chiffre(digit, repetitions, digit);
+			separer_chiffre_gauche(nombre);
+		}
+		dire_chiffre(num_fin, repetitions, digit);
 	}
-	return digit;
+	return num_fin;
 }
 
 /*******************************************
