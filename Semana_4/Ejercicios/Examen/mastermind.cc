@@ -104,25 +104,33 @@ bool couleur_valide(char c)
 }
 
 // ======================================================================
-bool verifier(char c1, char r1, int& score)
+bool verifier(char& c1, char& r1, int& score)
 {
 	if (c1 == r1)
 	{
 		++score;
+		c1 = 'X';
+		r1 = 'x';
 		return true;
 	}
 	return false;
 }
 
 // ======================================================================
-void apparier(char col_test, char col_1, char col_2, char col_3, int& score)
+void apparier(char col_test, char& col_1, char& col_2, char& col_3, int& score)
 {
-	if (col_test == col_1)
+	if (col_test == col_1){
+		col_1 = 'x';
 		++score;
-	if (col_test == col_2)
+	}
+	else if (col_test == col_2){
+		col_2 = 'x';
 		++score;
-	if (col_test == col_3)
+	}
+	else if (col_test == col_3){
+		col_3 = 'x';
 		++score;
+	}
 }
 
 // ======================================================================
@@ -130,51 +138,23 @@ void afficher_reponses(char c1, char c2, char c3, char c4,
 		char r1, char r2, char r3, char r4)
 {
 	int score(0);
-	apparier(c1, r1, r2, r3, score);
-	if (verifier(c1, r1, score))
-		afficher(score, '+');
-	if (verifier(c1, r2, score))
-		afficher(score, '+');
-	if (verifier(c1, r3, score))
-		afficher(score, '+');
-	if (verifier(c1, r4, score))
-		afficher(score, '+');
-	if (score != 0)
-		afficher(score, '#');
-	apparier(c2, r1, r2, r3, score);
-	if (verifier(c2, r1, score))
-		afficher(score, '+');
-	if (verifier(c2, r2, score))
-		afficher(score, '+');
-	if (verifier(c2, r3, score))
-		afficher(score, '+');
-	if (verifier(c2, r4, score))
-		afficher(score, '+');
-	if (score != 0)
-		afficher(score, '#');
-	apparier(c3, r1, r2, r3, score);
-	if (verifier(c3, r1, score))
-		afficher(score, '+');
-	if (verifier(c3, r2, score))
-		afficher(score, '+');
-	if (verifier(c3, r3, score))
-		afficher(score, '+');
-	if (verifier(c3, r4, score))
-		afficher(score, '+');
-	if (score != 0)
-		afficher(score, '#');
-	apparier(c4, r1, r2, r3, score);
-	if (verifier(c4, r1, score))
-		afficher(score, '+');
-	if (verifier(c4, r2, score))
-		afficher(score, '+');
-	if (verifier(c4, r3, score))
-		afficher(score, '+');
-	if (verifier(c4, r4, score))
-		afficher(score, '+');
-	if (score != 0)
-		afficher(score, '#');
-	cout << "score: " << score << endl;
+	int sum(0);
+	verifier(c1, r1, score); 
+	verifier(c2, r2, score);
+	verifier(c3, r3, score);
+	verifier(c4, r4, score);
+	afficher(score, '#');
+//	cout << endl << c1 << c2 << c3  << c4 << endl;
+//	cout << endl << r1 << r2 << r3  << r4 << endl;
+	sum += score;
+	score = 0;
+	apparier(c1, r2, r3, r4, score);
+	apparier(c2, r1, r3, r4, score);
+	apparier(c3, r2, r1, r4, score);
+	apparier(c4, r2, r3, r1, score);
+	afficher(score, '+');
+	sum += score;
+	afficher(4-sum, '-');
 }
 
 // ======================================================================
@@ -187,20 +167,28 @@ bool gagne(char c1, char c2, char c3, char c4,
 }
 
 // ======================================================================
-void jouer()
+void jouer(int intentos = 8)
 {
 	char r1 = tirer_couleur();
 	char r2 = tirer_couleur();
 	char r3 = tirer_couleur();
 	char r4 = tirer_couleur();
-	for (int ask_col(0); ask_col < 4; ++ask_col) {
+//	cout << "Entra los colores test R: ";
+//	char r1(0); 
+//	char r2(0);	
+//	char r3(0);	
+//	char r4(0);		
+//	cin >> r1 >> r2 >> r3 >> r4;
+	for (int ask_col(1); ask_col <= intentos; ++ask_col) {
 		char c1 = lire_couleur();
 		char c2 = lire_couleur();
 		char c3 = lire_couleur();
 		char c4 = lire_couleur();
 		afficher_coup(c1, c2, c3, c4, r1, r2, r3, r4);
-		if (gagne(c1, c2, c3, c4, r1, r2, r3, r4))
+		if (gagne(c1, c2, c3, c4, r1, r2, r3, r4)){
 			message_gagne(ask_col);
+			return ;
+		}
 	}
 	message_perdu(r1, r2, r3, r4);
 }
