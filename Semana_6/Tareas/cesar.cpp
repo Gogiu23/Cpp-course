@@ -1,19 +1,27 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 char code(char c, int n);
+string code(string str, int nm);
 char decale(char c, char debut, int decalage);
+string decode(string str, int num);
 
 int main(){
-	char c('a'); 
-	c = code(c, 1);
-	cout << c << endl;
+//	char c('g');
+//	c = code(c, -133);
+//	cout << c << endl;
+//	string str("Avez-vous vu mes 3 chats et mes 2 chiens ?");
+//	str = code(str, 4);
+//	cout << str << endl;
+//	str = decode(str, 4);
+//	cout << str << endl;
 	return 0;
 }
 
 char decale(char c, char debut, int decalage)
 {
-	if (decalage < 0)
+	while (decalage < 0)
 		decalage += 26;
 	return (debut + (((c - debut) + decalage) % 26));
 }
@@ -26,4 +34,20 @@ char code(char c, int n)
 		return decale(c, 'A', n);
 	else
 		return c;
+}
+
+string code(string str, int nm)
+{
+	int i(0);
+	while (str[i])
+	{
+		str[i] = code(str[i], nm);
+		i++;
+	}
+	return str;
+}
+
+string decode(string str, int num) 
+{
+	return (code(str, -num));
 }
