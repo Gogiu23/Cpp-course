@@ -236,7 +236,7 @@ array<array<double, 2>, 2> rotation;
 ```
 Siempre tiene que ser del mismo tipo.
 
-[img]: https://github.com/Gogiu23/Cpp-course/tree/main/Images/RESUM.png
+![img](https://github.com/Gogiu23/Cpp-course/tree/main/Images/RESUM.png)
 
 
 
