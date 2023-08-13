@@ -19,11 +19,11 @@ all: check_bindir generate
 generate:
 	$(CFLAGS) $(SRC_FILE) -o "$(BINDIR)/$(basename $(SRC_FILE))"
 
-#ask_source:
-#	@read -p "Name .cpp: " SRC_FILE;
-#	@echo $(SRC_FILE)
+e:
+	@./$(BINDIR)/$(basename $(SRC_FILE))
+
 
 clean:
 	rm -rf $(BINDIR)/$(basename $(SRC_FILE))
 
-.PHONY: all clean
+.PHONY: all clean e
