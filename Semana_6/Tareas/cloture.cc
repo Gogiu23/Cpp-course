@@ -1,4 +1,6 @@
+#include <cstdlib>
 #include <iostream>
+#include <iterator>
 #include <vector>
 using namespace std;
 
@@ -16,9 +18,6 @@ bool binaire(Carte const& carte);
 void affiche(Carte const& carte);
 bool verifie_et_modifie(Carte& carte);
 bool is_a_pond(Carte const& carte, Position cor);
-double count_mid_map(Carte carte, Position& cor);
-double count_first_line(Carte carte, Position& cor);
-double count_last_line(Carte carte, Position& cor);
 void ajoute_unique(vector<int>& ensemble, int valeur);
 bool convexite_lignes(Carte& carte, vector<int> const& labels_bords);
 bool convexite_lignes(Carte& carte);
@@ -38,74 +37,130 @@ bool convexite_lignes(Carte& carte)
 	return true;
 }
 
-double count_first_line(Carte carte, Position& cor)
+
+
+double count_mid_map(const Carte& carte)
 {
 	double result(0.00);
-	while (cor.j < carte[cor.i].size())
-	{
-		if (carte[cor.i][cor.j] == 1)
-		{
-			++result;
-			if (carte[cor.i][cor.j-1] == 0 || cor.j == 0) {
-				++result;
-			}
-			if (carte[cor.i][cor.j+1] == 0 && cor.j << carte[cor.i].size()) {
-				++result;
-			}
-			if (carte[cor.i+1][cor.j] == 0) {
-				++result;
-			}
+	for (size_t i(1); i < carte.size()-1; ++i) {
+		for (size_t j(1); j < carte[0].size()-1; ++j) {
+			if (carte[i][j] == 1) {
+				if (carte[i-1][j] == 0) {
+					++result;
+				}
+				if (carte[i][j+1] == 0) {
+					++result;
+				}
+				if (carte[i+1][j] == 0) {
+					++result;
+				}
+				if (carte[i][j-1] == 0) {
+					++result;
+				}
+			}	
 		}
-		++(cor.j);
+	
 	}
 	return result;
 }
 
-double count_last_line(Carte carte, Position& cor)
+double count_last_line(const Carte& carte)
 {
 	double result(0.00);
-	while (cor.j < carte[cor.i].size())
-	{
-		if (carte[cor.i][cor.j] == 1)
+	double count(0.00);
+	size_t line_max(carte.size()-1);
+	for (size_t j(0); j < carte[0].size(); ++j) {
+		if (carte[line_max][j] == 1) 
 		{
-			++result;
-			if (carte[cor.i-1][cor.j] == 0) {
+			++count;
+			if (carte[line_max-1][j] == 0) 
 				++result;
-			}
-			if (carte[cor.i][cor.j-1] == 0 || cor.j == 0) {
-				++result;
-			}
-			if (carte[cor.i][cor.j+1] == 0 && cor.j < carte[cor.i].size()) {
-				++result;
-			}
-		}
-		++(cor.j);
+		
+		}	
 	}
+	result = result + count + 2;
 	return result;
 }
 
-double count_mid_map(Carte carte, Position& cor)
+double count_first_line(const Carte& carte)
+{
+	double result(0.00);
+	double count(0.00);
+	for (size_t j(0); j < carte[0].size(); ++j) {
+		if (carte[0][j] == 1) 
+		{
+			++count;
+					if (carte[1][j] == 0) 
+				++result;
+		}
+	}
+	result = result + count + 2;
+	return result;
+}
+
+double count_last_column(const Carte& carte)
+{
+	double result(0.00);
+	double count(0.00);
+	size_t col_max(carte[0].size()-1);
+	for (size_t i(1); i < carte.size()-1; ++i) {
+		if (carte[i][col_max] == 1) {
+			++count;
+			if (carte[i][col_max-1] == 0) 
+				++result;
+			if (carte[i-1][col_max] == 0)
+				++result;
+			if (carte[i+1][col_max] == 0) 
+				++result;
+		}	
+	}
+	result = result + count;
+	return result;
+}
+
+double count_first_column(const Carte& carte)
+{
+	double result(0.00);
+	double count(0.00);
+	for (size_t i(1); i < carte.size()-1; ++i) {
+		if (carte[i][0] == 1) 
+		{
+			++count;
+			if (carte[i][1] == 0) 
+				++result;
+			if (carte[i-1][0] == 0)
+				++result;	
+			if (carte[i+1][0] == 0) 
+				++result;
+		}
+	}
+	result = result + count;
+	return result;
+}
+
+double count_square(const Carte& carte)
+{
+	double result(0.00);
+	result += count_first_line(carte);
+	result += count_last_line(carte);
+	result += count_first_column(carte);
+	result += count_last_column(carte);
+	result += count_mid_map(carte);
+	return result;
+}
+
+double one_line_map(const Carte& carte, Position cor)
 {
 	double result(0.00);
 	while (cor.j < carte[cor.i].size()) {
-		if (carte[cor.i][cor.j] == 1)
-		{
-			if (carte[cor.i-1][cor.j] == 0)
-				++result;
-			if (carte[cor.i][cor.j+1] == 0 && cor.j < carte[cor.i].size()) {
-				++result;
-			}
-			if (carte[cor.i+1][cor.j] == 0) {
-				++result;
-			}
-			if (carte[cor.i][cor.j-1] == 0 || cor.j == 0) {
-				++result;
-			}
+		if (carte[cor.i][cor.j] == 1) {
+			++result;	
 		}
-		++(cor.j);
+		++cor.j;
 	}
-	return result;
+	return ((result * 2) + 2);
 }
+
 
 double longueur_cloture(Carte const& carte, double echelle)
 {
@@ -113,27 +168,10 @@ double longueur_cloture(Carte const& carte, double echelle)
 	cor.i = 0;
 	cor.j = 0;
 	double result(0.00);
-	while (cor.i < carte.size())
-	{
-		cor.j = 0;
-		if (carte.size() == 1)
-		{
-			while (cor.j < carte[cor.i].size()) {
-				if (carte[cor.i][cor.j] == 1) {
-					++result;	
-				}
-				++cor.j;
-			}
-			return (echelle * ((result * 2) + 2));
-		}
-		if (cor.i == 0)
-			result += count_first_line(carte, cor);
-		else if (cor.i != carte.size()-1)
-			result += count_mid_map(carte, cor);
-		if (cor.i == carte.size()-1)
-			result += count_last_line(carte, cor);
-		++(cor.i);
-	}
+	if (carte.size() == 1)
+		result += one_line_map(carte, cor);
+	else
+		result += count_square(carte);
 	return (echelle * result);
 }
 
@@ -255,7 +293,7 @@ int main()
 		{0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 
-	cout << "Carte au départ :" << endl;
+   	cout << "Carte au départ :" << endl;
 	affiche(carte);
 	if (verifie_et_modifie(carte)) {
 		cout << "Carte après modification :" << endl;
